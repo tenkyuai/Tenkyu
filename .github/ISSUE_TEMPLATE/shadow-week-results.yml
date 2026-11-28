@@ -1,0 +1,85 @@
+name: Shadow-week results
+description: Share your `tenkyu shadow-report` numbers after a week in shadow mode (counts and rates only).
+title: "Shadow week: <app type>, <signups per day> signups a day"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for trying Tenkyu. This form is for the numbers from your first week in shadow mode (see `docs/first-week.md`).
+
+        **Paste counts and rates only. Do not paste emails, IP addresses, device ids, user agents, decision logs, labels files, API keys or anything else that identifies a person.** The text of a `tenkyu shadow-report` is safe to paste because it holds only counts, rates and dollar figures. If you are not sure whether a line is safe, leave it out and describe it in words. This issue is public.
+  - type: checkboxes
+    id: no-private-data
+    attributes:
+      label: Before you submit
+      options:
+        - label: I checked that this issue contains no emails, IP addresses, device ids, logs or API keys.
+          required: true
+  - type: dropdown
+    id: how
+    attributes:
+      label: How did you run Tenkyu?
+      options:
+        - Library (`Guard(shadow=True)`)
+        - Hosted API (shadow mode on a new account)
+        - Both
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: "Run `tenkyu version`. PyPI serves 0.2.1; the shadow-report command is in the unreleased 0.3.0 (install from GitHub)."
+      options:
+        - 0.2.1 from PyPI
+        - 0.3.0 from GitHub (branch or commit in the box below)
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: app-type
+    attributes:
+      label: App type
+      description: What does the free credit pay for, and who signs up?
+      placeholder: "AI image generator, consumer, email signup; Next.js + Supabase"
+    validations:
+      required: true
+  - type: input
+    id: signups
+    attributes:
+      label: Signups per day (roughly)
+      placeholder: "about 40 a day, one launch-day spike of 300"
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Your `tenkyu shadow-report` output
+      description: "Paste the printed report (or the hosted 'Your accuracy' numbers). Counts and rates only: delete any line that shows an email, IP or id."
+      render: text
+      placeholder: |
+        Labelled decisions: ...
+        Precision: ...   Recall: ...
+        Honest users wrongly flagged: ... (blocked: ...)
+        Credit withheld from farmers / from real users: $... / $...
+    validations:
+      required: true
+  - type: input
+    id: labels
+    attributes:
+      label: How many decisions did you label, and how?
+      description: "The report is noisy under 50 labelled farmer or real decisions."
+      placeholder: "62 labelled: 14 farmers, 48 real; banned accounts and paying customers"
+    validations:
+      required: true
+  - type: textarea
+    id: surprised
+    attributes:
+      label: What surprised you?
+      description: "Honest users who were flagged and why (as a group, for example 'a university network'), farmers it missed, anything confusing. No names or addresses."
+    validations:
+      required: true
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else (optional)

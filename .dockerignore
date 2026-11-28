@@ -1,0 +1,13 @@
+.git
+**/__pycache__
+**/*.pyc
+build
+dist
+*.egg-info
+tests
+benchmarks
+docs
+examples
+clients
+hosted/tests
+hosted/web/screenshots

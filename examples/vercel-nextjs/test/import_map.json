@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "next/server": "./next-server-shim.ts",
+    "server-only": "./empty.ts",
+    "tenkyu": "../../../clients/js/src/index.ts"
+  }
+}

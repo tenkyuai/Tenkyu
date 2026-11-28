@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tenkyu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+body{margin:0}
+a{color:#b8105f}a:hover{color:#7d0a40}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #2b0f1e;outline-offset:3px}
+button{font:inherit}
+</style>
+</helmet>
+<!-- Layout idea: one fluid column on a blush field; frosted glass panes carry the content; the hero pane is a live alias collapser. -->
+<div style="width:100%;box-sizing:border-box;padding:0 0 72px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;color:#2b0f1e;background:radial-gradient(60% 520px at 88% 0%,#ffa3cf 0%,rgba(255,163,207,0) 70%),radial-gradient(50% 640px at 0% 34%,#ffc4de 0%,rgba(255,196,222,0) 70%),radial-gradient(55% 600px at 100% 66%,#ff9ccb 0%,rgba(255,156,203,0) 70%),#fbe9f1">
+<div style="max-width:1120px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:96px">
+
+<header style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:28px">
+<div style="font-family:'Unbounded',system-ui,sans-serif;font-weight:600;font-size:26px;letter-spacing:-0.03em">tenkyu</div>
+<nav aria-label="Sections" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font-size:15px;font-weight:500">
+<a href="#quickstart" style="text-decoration:none;padding:10px 0">Quickstart</a>
+<a href="#signals" style="text-decoration:none;padding:10px 0">Signals</a>
+<a href="#numbers" style="text-decoration:none;padding:10px 0">Numbers</a>
+<a href="#limits" style="text-decoration:none;padding:10px 0">Limits</a>
+<a href="https://github.com/tenkyuai/tenkyu" style="text-decoration:none;padding:10px 0">GitHub</a>
+<span style="font-size:13px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.9);color:#6b4559">Early Access v0.2, on PyPI</span>
+</nav>
+</header>
+
+<section aria-labelledby="hero-h" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:24px">
+<h1 id="hero-h" style="margin:0;font-family:'Unbounded',system-ui,sans-serif;font-weight:600;font-size:clamp(34px,5.2vw,58px);line-height:1.08;letter-spacing:-0.03em;text-wrap:balance">How many of your free credits went to farmers?</h1>
+<p style="margin:0;max-width:52ch;font-size:19px;color:#4a2a3b;text-wrap:pretty">Run <span style="font-family:'DM Mono',ui-monospace,monospace;font-size:16px">python -m tenkyu audit signups.csv</span> on your own signup export and find out, offline, in one command. Then let the same small Python library score new signups as allow, review or block, with the reasons. No dependencies, no network calls.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<a href="#quickstart" style="display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:#2b0f1e;color:#ffffff;font-weight:600;text-decoration:none;box-shadow:0 0 0 4px rgba(232,51,138,0.35)">Read the quickstart</a>
+<a href="https://github.com/tenkyuai/tenkyu" style="display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.95);color:#2b0f1e;font-weight:600;text-decoration:none">View on GitHub</a>
+</div>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:15px;color:#6b4559">
+<li>Tested on Python 3.11 and 3.13</li>
+<li>No dependencies</li>
+<li>No network calls</li>
+<li>2,684 passing tests</li>
+<li>MIT license</li>
+</ul>
+</div>
+
+<div style="background:rgba(255,255,255,0.5);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,0.85);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 28px 48px -32px rgba(184,16,95,0.5);border-radius:28px;padding:8px">
+<div style="border-radius:20px;background:rgba(255,255,255,0.55);padding:24px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="alias-input" style="font-weight:600;font-size:15px">Type any email address</label>
+<input id="alias-input" type="text" value="{{email}}" onChange="{{onEmail}}" autocomplete="off" spellcheck="false" style="box-sizing:border-box;width:100%;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid rgba(43,15,30,0.28);background:#ffffff;color:#2b0f1e;font-family:'DM Mono',ui-monospace,monospace;font-size:16px">
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px" aria-label="Examples">
+<sc-for list="{{presets}}" as="p" hint-placeholder-count="3">
+<button type="button" onClick="{{p.pick}}" style="min-height:44px;padding:0 14px;border-radius:999px;border:1px solid rgba(43,15,30,0.22);background:rgba(255,255,255,0.7);color:#2b0f1e;font-family:'DM Mono',ui-monospace,monospace;font-size:13px;cursor:pointer">{{p.label}}</button>
+</sc-for>
+</div>
+<div style="border-radius:16px;background:#2b0f1e;color:#ffe9f3;padding:20px;display:flex;flex-direction:column;gap:8px" aria-live="polite">
+<div style="font-size:14px;color:#ffc4de">Tenkyu counts this as</div>
+<div style="font-family:'DM Mono',ui-monospace,monospace;font-size:22px;overflow-wrap:anywhere">{{normalized}}</div>
+<div style="font-size:15px;color:#ffe9f3">{{note}}</div>
+</div>
+<p style="margin:0;font-size:14px;color:#6b4559">This panel runs the same dot, plus-tag and googlemail.com rules in your browser. The library applies them in Python.</p>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="demo-h" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:62ch">
+<h2 id="demo-h" style="margin:0;font-family:'Unbounded',system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">Eight signups, eight decisions</h2>
+<p style="margin:0;color:#4a2a3b;text-wrap:pretty">This is the real output of <span style="font-family:'DM Mono',ui-monospace,monospace;font-size:15px">python -m tenkyu demo</span>. The clock is fixed, so you get the same table every run. Credits is the share of the free grant to release.</p>
+</div>
+<div style="background:rgba(255,255,255,0.5);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,0.85);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 28px 48px -32px rgba(184,16,95,0.5);border-radius:28px;padding:8px">
+<div style="border-radius:20px;background:rgba(255,255,255,0.55);overflow-x:auto">
+<div role="table" aria-label="Demo decisions" style="min-width:860px;padding:8px 20px 12px">
+<div role="row" style="display:grid;grid-template-columns:120px 240px 96px 64px 72px 1fr;gap:16px;padding:14px 0;font-size:14px;font-weight:600;color:#6b4559;border-bottom:1px solid rgba(43,15,30,0.14)">
+<div role="columnheader">Scene</div><div role="columnheader">Email</div><div role="columnheader">Action</div><div role="columnheader">Score</div><div role="columnheader">Credits</div><div role="columnheader">Main reason</div>
+</div>
+<sc-for list="{{demoRows}}" as="r" hint-placeholder-count="8">
+<div role="row" style="display:grid;grid-template-columns:120px 240px 96px 64px 72px 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(43,15,30,0.08);font-size:15px">
+<div role="cell">{{r.scene}}</div>
+<div role="cell" style="font-family:'DM Mono',ui-monospace,monospace;font-size:13px;overflow-wrap:anywhere">{{r.email}}</div>
+<div role="cell"><span style="{{r.pill}}">{{r.action}}</span></div>
+<div role="cell" style="font-variant-numeric:tabular-nums">{{r.score}}</div>
+<div role="cell" style="font-variant-numeric:tabular-nums">{{r.credits}}</div>
+<div role="cell" style="color:#4a2a3b">{{r.reason}}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<section id="quickstart" aria-labelledby="qs-h" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:40px;align-items:start;scroll-margin-top:24px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<h2 id="qs-h" style="margin:0;font-family:'Unbounded',system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">Ten lines to your first decision</h2>
+<p style="margin:0;color:#4a2a3b;text-wrap:pretty">Create one Guard for the life of your process and call check on every signup. The second call is the same person using a new alias, and it comes back as a block.</p>
+<p style="margin:0;color:#4a2a3b;text-wrap:pretty">Install it from PyPI with <span style="font-family:'DM Mono',ui-monospace,monospace;font-size:15px">pip install tenkyu</span>. Python 3.11 or newer, no dependencies.</p>
+</div>
+<div style="background:rgba(255,255,255,0.35);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,0.8);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 28px 48px -32px rgba(184,16,95,0.5);border-radius:28px;padding:8px">
+<div style="border-radius:20px;background:#2b0f1e;overflow-x:auto">
+<pre style="margin:0;padding:24px;font-family:'DM Mono',ui-monospace,monospace;font-size:13px;line-height:1.7;color:#ffe9f3;white-space:pre;tab-size:4">from tenkyu import Guard, Signup
+
+guard = Guard()  # in-memory; reuse one Guard for the life of your process
+UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Chrome/120.0 Safari/537.36"
+
+first = guard.check(Signup(email="john@gmail.com", ip="203.0.113.7", device_id="dev-1", user_agent=UA))
+print(first.action, first.reasons)  # allow []
+
+# Same person, new alias, hoping for another batch of free credits:
+again = guard.check(Signup(email="j.o.h.n+free2@gmail.com", ip="203.0.113.7", device_id="dev-1", user_agent=UA))
+print(again.action, again.reasons)  # block ['this email (or an alias of it) already signed up']
+
+if again.action != "allow":
+    print("withhold free credits; send to manual review" if again.action == "review" else "reject signup")</pre>
+</div>
+</div>
+</section>
+
+<section id="signals" aria-labelledby="sig-h" style="display:flex;flex-direction:column;gap:24px;scroll-margin-top:24px">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:62ch">
+<h2 id="sig-h" style="margin:0;font-family:'Unbounded',system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">Nine signals, each with a score</h2>
+<p style="margin:0;color:#4a2a3b;text-wrap:pretty">Scores combine so that several weak signals add up and one strong signal is enough alone. Under 0.35 is allow, 0.35 to 0.7 is review, and 0.7 and up is block. Every decision carries the list of reasons, so your support team can read it.</p>
+</div>
+<div style="background:rgba(255,255,255,0.5);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,0.85);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 28px 48px -32px rgba(184,16,95,0.5);border-radius:28px;padding:8px">
+<div style="border-radius:20px;background:rgba(255,255,255,0.55);padding:12px 24px 20px;display:flex;flex-direction:column">
+<div style="display:flex;flex-wrap:wrap;gap:8px 20px;padding:12px 0;font-size:14px;color:#4a2a3b;border-bottom:1px solid rgba(43,15,30,0.14)">
+<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:4px;background:rgba(31,157,107,0.35)"></span>Allow, under 0.35</span>
+<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:4px;background:rgba(217,140,10,0.38)"></span>Review, 0.35 to 0.7</span>
+<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border-radius:4px;background:rgba(216,27,100,0.34)"></span>Block, 0.7 and up</span>
+</div>
+<sc-for list="{{signalRows}}" as="s" hint-placeholder-count="9">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:14px 0;border-bottom:1px solid rgba(43,15,30,0.08)">
+<div style="flex:0 0 170px;font-family:'DM Mono',ui-monospace,monospace;font-size:14px;font-weight:500">{{s.name}}</div>
+<div style="flex:1 1 260px;font-size:15px;color:#4a2a3b">{{s.catches}}</div>
+<div style="flex:1 1 220px;min-width:180px;display:flex;align-items:center;gap:14px">
+<div style="{{s.track}}"><div style="{{s.bar}}"></div><div style="{{s.dotA}}"></div><div style="{{s.dotB}}"></div></div>
+<div style="flex:0 0 76px;font-size:14px;font-variant-numeric:tabular-nums;text-align:right">{{s.label}}</div>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="numbers" aria-labelledby="num-h" style="display:flex;flex-direction:column;gap:24px;scroll-margin-top:24px">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:66ch">
+<h2 id="num-h" style="margin:0;font-family:'Unbounded',system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">It works on lazy farming and misses determined farming</h2>
+<p style="margin:0;color:#2b0f1e;font-weight:500;text-wrap:pretty">These numbers come from a synthetic data set we generated ourselves. They compare Tenkyu with naive rules on behaviors we imagined. They are not a measurement of real-world accuracy.</p>
+<p style="margin:0;color:#4a2a3b;text-wrap:pretty">The set has 2,000 real users and 200 farmers who open 863 extra accounts across five strategies in one simulated week. Flagged means review or block. Reproduce it with <span style="font-family:'DM Mono',ui-monospace,monospace;font-size:15px">PYTHONPATH=src python benchmarks/farming_bench.py</span>.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px;align-items:start">
+<div style="background:rgba(255,255,255,0.5);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,0.85);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 28px 48px -32px rgba(184,16,95,0.5);border-radius:28px;padding:8px">
+<div style="border-radius:20px;background:rgba(255,255,255,0.55);overflow-x:auto">
+<div role="table" aria-label="Benchmark by method" style="min-width:460px;padding:8px 20px 16px">
+<div role="row" style="display:grid;grid-template-columns:1.6fr 0.8fr 0.8fr 0.6fr 1fr;gap:12px;padding:14px 0;font-size:14px;font-weight:600;color:#6b4559;border-bottom:1px solid rgba(43,15,30,0.14)">
+<div role="columnheader">Method</div><div role="columnheader">Precision</div><div role="columnheader">Recall</div><div role="columnheader">F1</div><div role="columnheader">Real users flagged</div>
+</div>
+<sc-for list="{{methodRows}}" as="m" hint-placeholder-count="3">
+<div role="row" style="display:grid;grid-template-columns:1.6fr 0.8fr 0.8fr 0.6fr 1fr;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(43,15,30,0.08);font-size:15px;font-variant-numeric:tabular-nums">
+<div role="cell" style="{{m.nameStyle}}">{{m.name}}</div><div role="cell">{{m.precision}}</div><div role="cell">{{m.recall}}</div><div role="cell" style="{{m.nameStyle}}">{{m.f1}}</div><div role="cell">{{m.fpr}}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="background:rgba(255,255,255,0.5);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,0.85);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 28px 48px -32px rgba(184,16,95,0.5);border-radius:28px;padding:8px">
+<div style="border-radius:20px;background:rgba(255,255,255,0.55);padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px">
+<div style="font-weight:600;font-size:15px">Share of extra accounts caught, by farming strategy</div>
+<div style="display:flex;gap:20px;font-size:14px;color:#4a2a3b;flex-wrap:wrap">
+<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:14px;height:8px;border-radius:4px;background:#a58b98"></span>Exact email dedupe</span>
+<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:14px;height:8px;border-radius:4px;background:#e8338a"></span>Tenkyu</span>
+</div>
+<sc-for list="{{strategyRows}}" as="g" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="font-size:15px;font-weight:500">{{g.name}}</div>
+<div style="display:flex;align-items:center;gap:12px"><div style="flex:1 1 auto;height:8px;border-radius:4px;background:rgba(43,15,30,0.08)"><div style="{{g.dedupeBar}}"></div></div><div style="flex:0 0 48px;font-size:14px;text-align:right;font-variant-numeric:tabular-nums">{{g.dedupe}}</div></div>
+<div style="display:flex;align-items:center;gap:12px"><div style="flex:1 1 auto;height:8px;border-radius:4px;background:rgba(43,15,30,0.08)"><div style="{{g.tenkyuBar}}"></div></div><div style="flex:0 0 48px;font-size:14px;text-align:right;font-weight:600;font-variant-numeric:tabular-nums">{{g.tenkyu}}</div></div>
+</div>
+</sc-for>
+<p style="margin:0;font-size:15px;color:#2b0f1e;text-wrap:pretty">Residential farmers use a fresh home IP, a fresh device and an unrelated Gmail address for every account. Tenkyu catches none of them.</p>
+</div>
+</div>
+</div>
+<p style="margin:0;max-width:66ch;color:#4a2a3b;text-wrap:pretty">None of the 2,000 real users were blocked. The 75 (3.7%) who were flagged all went to review, and every one shared a device id with other accounts, which in this data is a household computer. A shared device alone never reaches block, so a farmer who only reuses one device gets review and a quarter of the free credits. Shared office IPs triggered nothing.</p>
+</section>
+
+<section id="limits" aria-labelledby="lim-h" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:40px;align-items:start;scroll-margin-top:24px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<h2 id="lim-h" style="margin:0;font-family:'Unbounded',system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">Where it falls short</h2>
+<p style="margin:0;color:#4a2a3b;text-wrap:pretty">Tenkyu is Early Access (v0.2) and uses heuristics only. Read this list before you put it in front of real users.</p>
+</div>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:20px">
+<sc-for list="{{limits}}" as="l" hint-placeholder-count="4">
+<li style="display:flex;flex-direction:column;gap:4px;padding-left:16px;border-left:3px solid #e8338a">
+<div style="font-weight:600">{{l.title}}</div>
+<div style="font-size:16px;color:#4a2a3b;text-wrap:pretty">{{l.body}}</div>
+</li>
+</sc-for>
+</ul>
+</section>
+
+<section aria-labelledby="fit-h" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:62ch">
+<h2 id="fit-h" style="margin:0;font-family:'Unbounded',system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">Fits into the signup handler you already have</h2>
+</div>
+<div style="background:rgba(255,255,255,0.5);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,0.85);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 28px 48px -32px rgba(184,16,95,0.5);border-radius:28px;padding:8px">
+<div style="border-radius:20px;background:rgba(255,255,255,0.55);padding:8px 24px;display:flex;flex-direction:column">
+<sc-for list="{{fitRows}}" as="f" hint-placeholder-count="4">
+<div style="display:flex;flex-wrap:wrap;gap:6px 32px;padding:18px 0;border-bottom:1px solid rgba(43,15,30,0.08)">
+<div style="flex:0 0 220px;font-family:'DM Mono',ui-monospace,monospace;font-size:14px;font-weight:500">{{f.term}}</div>
+<div style="flex:1 1 320px;font-size:16px;color:#4a2a3b;text-wrap:pretty">{{f.body}}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="road-h" style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:62ch">
+<h2 id="road-h" style="margin:0;font-family:'Unbounded',system-ui,sans-serif;font-weight:500;font-size:clamp(24px,3.4vw,34px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">What is not built yet</h2>
+<p style="margin:0;color:#4a2a3b;text-wrap:pretty">Nothing below exists today. It is the order we would build it in.</p>
+</div>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{roadmap}}" as="rm" hint-placeholder-count="3">
+<li style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:16px 20px;border-radius:20px;background:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.85)">
+<span style="flex:0 0 auto;font-size:13px;font-weight:600;padding:4px 12px;border-radius:999px;background:rgba(43,15,30,0.08);color:#2b0f1e">{{rm.status}}</span>
+<span style="flex:1 1 300px;font-size:16px;text-wrap:pretty">{{rm.text}}</span>
+</li>
+</sc-for>
+</ul>
+</section>
+
+<footer style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid rgba(43,15,30,0.14);font-size:15px;color:#4a2a3b">
+<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-family:'Unbounded',system-ui,sans-serif;font-weight:600;font-size:20px;color:#2b0f1e;letter-spacing:-0.03em">tenkyu</span><span>MIT license. Early Access, v0.2.</span></div>
+<a href="https://github.com/tenkyuai/tenkyu" style="font-weight:600;min-height:44px;display:inline-flex;align-items:center">Source on GitHub</a>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#e8338a","options":["#e8338a","#ff5fa2","#d6246e","#f06aa8"]},"$preview":{"width":1280,"height":4200}}'>
+class Component extends DCLogic {
+  normalize(raw) {
+    if (typeof raw !== 'string') return null;
+    const e = raw.trim().toLowerCase();
+    if (e.length > 254 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e) || e.split('@').length !== 2) return null;
+    let parts = e.split('@');
+    let local = parts[0].split('+')[0];
+    let domain = parts[1].replace(/\.+$/, '');
+    if (domain.indexOf('.') === -1) return null;
+    if (domain === 'gmail.com' || domain === 'googlemail.com') {
+      local = local.replace(/\./g, '');
+      domain = 'gmail.com';
+    }
+    if (!local) return null;
+    return local + '@' + domain;
+  }
+
+  renderVals() {
+    const accent = (this.props && this.props.accent) || '#e8338a';
+    const DEFAULT_EMAIL = 'j.o.h.n+free2@googlemail.com';
+    const email = this.state && typeof this.state.email === 'string' ? this.state.email : DEFAULT_EMAIL;
+    const norm = this.normalize(email);
+    const trimmedLower = email.trim().toLowerCase();
+    let normalized = norm;
+    let note;
+    if (norm === null) {
+      normalized = 'not a valid address';
+      note = 'Tenkyu adds the invalid_email signal (0.50) and checks everything else as usual.';
+    } else if (norm === trimmedLower) {
+      note = 'Already in its simplest form, so no alias rule changed it.';
+    } else {
+      note = 'Any signup that reduces to this address counts as the same person, so the second one scores 0.90 on alias_reuse.';
+    }
+
+    const setEmail = (v) => () => this.setState({ email: v });
+    const presets = ['john@gmail.com', 'j.o.h.n+free1@gmail.com', 'john+free2@googlemail.com'].map((v) => ({ label: v, pick: setEmail(v) }));
+
+    const pillBase = 'display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;letter-spacing:0.02em;';
+    const pills = {
+      ALLOW: pillBase + 'background:rgba(31,157,107,0.16);color:#0b5c3d',
+      REVIEW: pillBase + 'background:rgba(217,140,10,0.22);color:#7a4a00',
+      BLOCK: pillBase + 'background:#2b0f1e;color:#ffffff'
+    };
+    const rows = [
+      ['honest user', 'ana@acme.io', 'ALLOW', '0.00', '100%', '-'],
+      ['alias farmer', 'john@gmail.com', 'ALLOW', '0.00', '100%', '-'],
+      ['alias farmer', 'j.o.h.n+free1@gmail.com', 'BLOCK', '0.90', '0%', 'this email (or an alias of it) already signed up'],
+      ['alias farmer', 'john+free2@googlemail.com', 'BLOCK', '0.95', '0%', 'this email (or an alias of it) already signed up'],
+      ['bot burst', 'bot0@acme.io', 'REVIEW', '0.45', '25%', 'automation-style user agent (python-requests)'],
+      ['bot burst', 'user1x@mailinator.com', 'BLOCK', '0.89', '0%', 'disposable email domain (mailinator.com)'],
+      ['bot burst', 'bot2@acme.io', 'BLOCK', '0.97', '0%', '3 signups from this IP in 60s'],
+      ['bot burst', 'user3x@mailinator.com', 'BLOCK', '1.00', '0%', '4 signups from this IP in 60s']
+    ];
+    const demoRows = rows.map((r) => ({ scene: r[0], email: r[1], action: r[2], score: r[3], credits: r[4], reason: r[5], pill: pills[r[2]] }));
+
+    const sig = [
+      ['alias_reuse', 'john@gmail.com, j.o.h.n+x@gmail.com and john@googlemail.com are one person', 0.90, null],
+      ['disposable_email', 'Mailinator-style throwaway domains and their subdomains', 0.80, null],
+      ['pattern_emails', 'farmer1@, farmer2@ and farmer3@ from one IP', 0.75, null],
+      ['ip_burst', '3 or more signups from one IP in 60 seconds', 0.90, null],
+      ['ip_velocity', '3 or more (0.50) or 6 or more (0.90) signups from one IP in an hour', 0.50, 0.90],
+      ['device_reuse', '2 accounts (0.50) or 3 or more (0.65) on one device id', 0.50, 0.65],
+      ['automation_agent', 'curl, python-requests, headless Chrome, Selenium and similar', 0.45, null],
+      ['no_user_agent', 'Signup with no user agent', 0.25, null],
+      ['invalid_email', 'Email missing or malformed', 0.50, null]
+    ];
+    const track = 'position:relative;flex:1 1 auto;height:12px;border-radius:6px;background:linear-gradient(90deg,rgba(31,157,107,0.30) 0%,rgba(31,157,107,0.30) 35%,rgba(217,140,10,0.34) 35%,rgba(217,140,10,0.34) 70%,rgba(216,27,100,0.30) 70%,rgba(216,27,100,0.30) 100%)';
+    const dot = (pct) => 'position:absolute;top:50%;left:' + pct + '%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:' + accent + ';border:3px solid #ffffff;box-sizing:border-box;box-shadow:0 1px 4px rgba(43,15,30,0.35)';
+    const signalRows = sig.map((s) => {
+      const lo = s[2] * 100;
+      const hi = s[3] === null ? lo : s[3] * 100;
+      const range = s[3] !== null;
+      return {
+        name: s[0],
+        catches: s[1],
+        label: range ? s[2].toFixed(2) + ' to ' + s[3].toFixed(2) : s[2].toFixed(2),
+        track: track,
+        bar: 'position:absolute;top:50%;left:' + lo + '%;width:' + (hi - lo) + '%;height:6px;margin-top:-3px;background:' + accent + ';border-radius:3px',
+        dotA: dot(lo),
+        dotB: range ? dot(hi) : 'display:none'
+      };
+    });
+
+    const strongName = 'font-weight:600;color:#2b0f1e';
+    const methodRows = [
+      { name: 'Exact email dedupe', precision: '0.81', recall: '0.01', f1: '0.03', fpr: '0.0%', nameStyle: '' },
+      { name: 'Email dedupe + disposable list', precision: '0.81', recall: '0.20', f1: '0.32', fpr: '0.0%', nameStyle: '' },
+      { name: 'Tenkyu (default)', precision: '0.84', recall: '0.81', f1: '0.82', fpr: '3.7%', nameStyle: strongName }
+    ];
+
+    const fill = (pct, color) => 'height:8px;border-radius:4px;width:' + pct + '%;background:' + color;
+    const strat = [['Alias Gmail', 3, 100], ['Bot burst', 0, 100], ['Disposable email', 0, 96], ['Lookalike emails', 3, 78], ['Residential', 0, 0]];
+    const strategyRows = strat.map((s) => ({
+      name: s[0],
+      dedupe: s[1] + '%',
+      tenkyu: s[2] + '%',
+      dedupeBar: fill(s[1], '#a58b98'),
+      tenkyuBar: fill(s[2], accent)
+    }));
+
+    const limits = [
+      { title: 'A speed bump, not a wall', body: 'A determined attacker with real residential IPs and aged emails will get through. No heuristic library stops that.' },
+      { title: 'One machine at a time', body: 'The default store is in memory and per process. SQLiteStore survives restarts and is shared by processes on one machine. Several servers still each see only their own traffic.' },
+      { title: 'A small disposable-domain list', body: 'Tenkyu bundles a short starter list and does not bundle third-party lists. Load a fresher one yourself and check its license.' },
+      { title: 'Shared IPs look like bursts', body: 'Offices, schools and mobile carriers can trip the IP signals. Send borderline cases to review instead of block, and tune the thresholds.' }
+    ];
+
+    const fitRows = [
+      { term: 'FastAPI and Flask', body: 'Example handlers are in the repo. They compile, but we have not run them against the live frameworks yet.' },
+      { term: 'device_id', body: 'Pass a visitor id from Fingerprint, Stytch or Castle as device_id and the device signal starts working. There is an example file for it.' },
+      { term: 'SQLiteStore', body: 'Keeps signup history in a file with the standard library only, so a restart does not forget everyone.' },
+      { term: 'credit_fraction', body: 'Every decision says how much of the free grant to release now: all of it for allow, a quarter for review and none for block, and you can change those shares.' }
+    ];
+
+    const roadmap = [
+      { status: 'Planned', text: 'A shared store (Redis or Postgres) so several servers see the same history.' },
+      { status: 'Built, launching soon', text: 'A hosted API and dashboard with a review queue. 1,000 free checks a month, then prepaid packs of 10,000 checks for $10. No subscription.' },
+      { status: 'Idea', text: 'More signals from your own data, added through the same plug-in interface you can use today.' }
+    ];
+
+    return {
+      accent, email, normalized, note, presets, demoRows, signalRows, methodRows, strategyRows, limits, fitRows, roadmap,
+      onEmail: (ev) => this.setState({ email: ev && ev.target ? ev.target.value : '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

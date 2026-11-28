@@ -1,0 +1,38 @@
+{
+  "Guard.for_ai_apps()": {
+    "farmer_grants_by_strategy_pct": {
+      "alias_gmail": 0.0,
+      "bot_burst": 5.2,
+      "disposable": 2.6,
+      "lookalike": 11.2,
+      "residential": 49.2
+    },
+    "farmer_grants_pct": 10.3,
+    "honest_avg_grant_pct": 48.7,
+    "honest_full_grant_pct": 0.0
+  },
+  "Guard.for_ai_apps() + card link": {
+    "farmer_grants_by_strategy_pct": {
+      "alias_gmail": 0.0,
+      "bot_burst": 0.0,
+      "disposable": 0.0,
+      "lookalike": 0.0,
+      "residential": 0.0
+    },
+    "farmer_grants_pct": 0.0,
+    "honest_avg_grant_pct": 97.2,
+    "honest_full_grant_pct": 96.2
+  },
+  "Tenkyu (default)": {
+    "farmer_grants_by_strategy_pct": {
+      "alias_gmail": 0.0,
+      "bot_burst": 5.2,
+      "disposable": 4.4,
+      "lookalike": 22.3,
+      "residential": 100.0
+    },
+    "farmer_grants_pct": 20.1,
+    "honest_avg_grant_pct": 97.2,
+    "honest_full_grant_pct": 96.2
+  }
+}

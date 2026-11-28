@@ -1,0 +1,51 @@
+{
+  "name": "tenkyu",
+  "version": "0.1.0",
+  "description": "Client for the Tenkyu hosted API: signup abuse and credit-farming checks that fail open.",
+  "keywords": [
+    "abuse",
+    "fraud",
+    "free-tier",
+    "credits",
+    "signup",
+    "tenkyu"
+  ],
+  "homepage": "https://github.com/tenkyuai/tenkyu/tree/main/clients/js#readme",
+  "bugs": {
+    "url": "https://github.com/tenkyuai/tenkyu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tenkyuai/tenkyu.git",
+    "directory": "clients/js"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "test": "tsc -p tsconfig.json && node --test test/*.test.mjs",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

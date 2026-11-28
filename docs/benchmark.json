@@ -1,0 +1,53 @@
+{
+  "events": 3063,
+  "extra_accounts": 863,
+  "f1": 0.822,
+  "farm_operators": 200,
+  "legit_users": 2000,
+  "methods": {
+    "Tenkyu (default)": {
+      "f1": 0.822,
+      "legit_false_positive_rate": 0.037,
+      "precision": 0.839,
+      "recall": 0.806
+    },
+    "email dedupe + disposable list": {
+      "f1": 0.317,
+      "legit_false_positive_rate": 0.0,
+      "precision": 0.813,
+      "recall": 0.197
+    },
+    "exact email dedupe": {
+      "f1": 0.03,
+      "legit_false_positive_rate": 0.0,
+      "precision": 0.812,
+      "recall": 0.015
+    }
+  },
+  "recall_by_strategy": {
+    "Tenkyu (default)": {
+      "alias_gmail": 1.0,
+      "bot_burst": 1.0,
+      "disposable": 0.964,
+      "lookalike": 0.777,
+      "residential": 0.0
+    },
+    "email dedupe + disposable list": {
+      "alias_gmail": 0.032,
+      "bot_burst": 0.0,
+      "disposable": 0.707,
+      "lookalike": 0.029,
+      "residential": 0.0
+    },
+    "exact email dedupe": {
+      "alias_gmail": 0.032,
+      "bot_burst": 0.0,
+      "disposable": 0.0,
+      "lookalike": 0.029,
+      "residential": 0.0
+    }
+  },
+  "seed": 7,
+  "tenkyu_blocked_legit": 0,
+  "tenkyu_blocked_total": 708
+}

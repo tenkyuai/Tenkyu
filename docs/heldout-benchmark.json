@@ -1,0 +1,417 @@
+{
+ "seeds": 20,
+ "results": {
+  "default": {
+   "precision": {
+    "mean": 0.8482099999999999,
+    "lo": 0.821435,
+    "hi": 0.8709224999999999
+   },
+   "recall": {
+    "mean": 0.7768900000000001,
+    "lo": 0.6889625,
+    "hi": 0.85142
+   },
+   "honest_flagged_rate": {
+    "mean": 0.04636,
+    "lo": 0.0386875,
+    "hi": 0.0538125
+   },
+   "blocked_precision": {
+    "mean": 0.9376950000000001,
+    "lo": 0.90758,
+    "hi": 0.9690599999999999
+   },
+   "blocked_recall": {
+    "mean": 0.54948,
+    "lo": 0.425135,
+    "hi": 0.6623724999999999
+   },
+   "honest_blocked_rate": {
+    "mean": 0.012190000000000001,
+    "lo": 0.00687,
+    "hi": 0.02
+   },
+   "usd_farmers_per_1000": {
+    "mean": 541.0588154443628,
+    "lo": 476.62253983130273,
+    "hi": 597.662839737582
+   },
+   "usd_real_per_1000": {
+    "mean": 85.0591297819927,
+    "lo": 71.18867824864132,
+    "hi": 98.07286785379569
+   },
+   "tactics": {
+    "card_or_phone_reuse": {
+     "recall": {
+      "mean": 0.8328049999999999,
+      "lo": 0.60307,
+      "hi": 0.931
+     },
+     "rows_per_seed": 25.5
+    },
+    "datacenter_bot": {
+     "recall": {
+      "mean": 0.9016500000000001,
+      "lo": 0.46255250000000003,
+      "hi": 1.0
+     },
+     "rows_per_seed": 26.95
+    },
+    "device_reuse": {
+     "recall": {
+      "mean": 0.9020849999999999,
+      "lo": 0.8246525,
+      "hi": 0.9455
+     },
+     "rows_per_seed": 35.9
+    },
+    "disposable": {
+     "recall": {
+      "mean": 0.8307100000000001,
+      "lo": 0.6515375,
+      "hi": 0.92006
+     },
+     "rows_per_seed": 45.85
+    },
+    "honest_campus": {
+     "false_positive_rate": {
+      "mean": 0.010624999999999999,
+      "lo": 0.0,
+      "hi": 0.06374999999999992
+     },
+     "rows_per_seed": 80.0
+    },
+    "honest_cgnat": {
+     "false_positive_rate": {
+      "mean": 0.11249499999999998,
+      "lo": 0.06744,
+      "hi": 0.16171249999999998
+     },
+     "rows_per_seed": 96.0
+    },
+    "honest_family": {
+     "false_positive_rate": {
+      "mean": 0.597295,
+      "lo": 0.5503925,
+      "hi": 0.647245
+     },
+     "rows_per_seed": 24.6
+    },
+    "honest_intl": {
+     "false_positive_rate": {
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "rows_per_seed": 9.25
+    },
+    "honest_ipv6": {
+     "false_positive_rate": {
+      "mean": 0.002565,
+      "lo": 0.0,
+      "hi": 0.0256825
+     },
+     "rows_per_seed": 33.65
+    },
+    "honest_launch": {
+     "false_positive_rate": {
+      "mean": 0.0006850000000000001,
+      "lo": 0.0,
+      "hi": 0.006852499999999999
+     },
+     "rows_per_seed": 139.65
+    },
+    "honest_plus": {
+     "false_positive_rate": {
+      "mean": 0.032305,
+      "lo": 0.0,
+      "hi": 0.11451249999999999
+     },
+     "rows_per_seed": 18.9
+    },
+    "honest_regular": {
+     "false_positive_rate": {
+      "mean": 0.004665,
+      "lo": 0.0,
+      "hi": 0.009004999999999999
+     },
+     "rows_per_seed": 357.95
+    },
+    "honest_vpn": {
+     "false_positive_rate": {
+      "mean": 0.010425,
+      "lo": 0.0,
+      "hi": 0.0417
+     },
+     "rows_per_seed": 24.0
+    },
+    "honest_work_personal": {
+     "false_positive_rate": {
+      "mean": 0.5,
+      "lo": 0.5,
+      "hi": 0.5
+     },
+     "rows_per_seed": 16.0
+    },
+    "lazy_alias": {
+     "recall": {
+      "mean": 0.91707,
+      "lo": 0.83748,
+      "hi": 0.9707724999999999
+     },
+     "rows_per_seed": 42.4
+    },
+    "patient_residential": {
+     "recall": {
+      "mean": 0.005,
+      "lo": 0.0,
+      "hi": 0.05249999999999986
+     },
+     "rows_per_seed": 16.0
+    },
+    "rotating_proxy": {
+     "recall": {
+      "mean": 0.46186499999999997,
+      "lo": 0.18229,
+      "hi": 0.724275
+     },
+     "rows_per_seed": 41.05
+    },
+    "unicode_trick": {
+     "recall": {
+      "mean": 0.95708,
+      "lo": 0.8397650000000001,
+      "hi": 1.0
+     },
+     "rows_per_seed": 33.7
+    }
+   }
+  },
+  "ai": {
+   "precision": {
+    "mean": 0.8482099999999999,
+    "lo": 0.821435,
+    "hi": 0.8709224999999999
+   },
+   "recall": {
+    "mean": 0.7768900000000001,
+    "lo": 0.6889625,
+    "hi": 0.85142
+   },
+   "honest_flagged_rate": {
+    "mean": 0.04636,
+    "lo": 0.0386875,
+    "hi": 0.0538125
+   },
+   "blocked_precision": {
+    "mean": 0.9376950000000001,
+    "lo": 0.90758,
+    "hi": 0.9690599999999999
+   },
+   "blocked_recall": {
+    "mean": 0.54948,
+    "lo": 0.425135,
+    "hi": 0.6623724999999999
+   },
+   "honest_blocked_rate": {
+    "mean": 0.012190000000000001,
+    "lo": 0.00687,
+    "hi": 0.02
+   },
+   "usd_farmers_per_1000": {
+    "mean": 605.3198409733152,
+    "lo": 566.5065604498594,
+    "hi": 644.0370196813495
+   },
+   "usd_real_per_1000": {
+    "mean": 754.919416414036,
+    "lo": 724.0803655107779,
+    "hi": 772.8971415182756
+   },
+   "tactics": {
+    "card_or_phone_reuse": {
+     "recall": {
+      "mean": 0.8328049999999999,
+      "lo": 0.60307,
+      "hi": 0.931
+     },
+     "rows_per_seed": 25.5
+    },
+    "datacenter_bot": {
+     "recall": {
+      "mean": 0.9016500000000001,
+      "lo": 0.46255250000000003,
+      "hi": 1.0
+     },
+     "rows_per_seed": 26.95
+    },
+    "device_reuse": {
+     "recall": {
+      "mean": 0.9020849999999999,
+      "lo": 0.8246525,
+      "hi": 0.9455
+     },
+     "rows_per_seed": 35.9
+    },
+    "disposable": {
+     "recall": {
+      "mean": 0.8307100000000001,
+      "lo": 0.6515375,
+      "hi": 0.92006
+     },
+     "rows_per_seed": 45.85
+    },
+    "honest_campus": {
+     "false_positive_rate": {
+      "mean": 0.010624999999999999,
+      "lo": 0.0,
+      "hi": 0.06374999999999992
+     },
+     "rows_per_seed": 80.0
+    },
+    "honest_cgnat": {
+     "false_positive_rate": {
+      "mean": 0.11249499999999998,
+      "lo": 0.06744,
+      "hi": 0.16171249999999998
+     },
+     "rows_per_seed": 96.0
+    },
+    "honest_family": {
+     "false_positive_rate": {
+      "mean": 0.597295,
+      "lo": 0.5503925,
+      "hi": 0.647245
+     },
+     "rows_per_seed": 24.6
+    },
+    "honest_intl": {
+     "false_positive_rate": {
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "rows_per_seed": 9.25
+    },
+    "honest_ipv6": {
+     "false_positive_rate": {
+      "mean": 0.002565,
+      "lo": 0.0,
+      "hi": 0.0256825
+     },
+     "rows_per_seed": 33.65
+    },
+    "honest_launch": {
+     "false_positive_rate": {
+      "mean": 0.0006850000000000001,
+      "lo": 0.0,
+      "hi": 0.006852499999999999
+     },
+     "rows_per_seed": 139.65
+    },
+    "honest_plus": {
+     "false_positive_rate": {
+      "mean": 0.032305,
+      "lo": 0.0,
+      "hi": 0.11451249999999999
+     },
+     "rows_per_seed": 18.9
+    },
+    "honest_regular": {
+     "false_positive_rate": {
+      "mean": 0.004665,
+      "lo": 0.0,
+      "hi": 0.009004999999999999
+     },
+     "rows_per_seed": 357.95
+    },
+    "honest_vpn": {
+     "false_positive_rate": {
+      "mean": 0.010425,
+      "lo": 0.0,
+      "hi": 0.0417
+     },
+     "rows_per_seed": 24.0
+    },
+    "honest_work_personal": {
+     "false_positive_rate": {
+      "mean": 0.5,
+      "lo": 0.5,
+      "hi": 0.5
+     },
+     "rows_per_seed": 16.0
+    },
+    "lazy_alias": {
+     "recall": {
+      "mean": 0.91707,
+      "lo": 0.83748,
+      "hi": 0.9707724999999999
+     },
+     "rows_per_seed": 42.4
+    },
+    "patient_residential": {
+     "recall": {
+      "mean": 0.005,
+      "lo": 0.0,
+      "hi": 0.05249999999999986
+     },
+     "rows_per_seed": 16.0
+    },
+    "rotating_proxy": {
+     "recall": {
+      "mean": 0.46186499999999997,
+      "lo": 0.18229,
+      "hi": 0.724275
+     },
+     "rows_per_seed": 41.05
+    },
+    "unicode_trick": {
+     "recall": {
+      "mean": 0.95708,
+      "lo": 0.8397650000000001,
+      "hi": 1.0
+     },
+     "rows_per_seed": 33.7
+    }
+   }
+  }
+ },
+ "disposable_split": {
+  "generator_domains": 35,
+  "overlapping_domains": 18,
+  "overlap_list": [
+   "10minutemail.com",
+   "1secmail.net",
+   "burnermail.io",
+   "dispostable.com",
+   "emailondeck.com",
+   "fakeinbox.com",
+   "getnada.com",
+   "guerrillamail.com",
+   "inboxkitten.com",
+   "maildrop.cc",
+   "mailinator.com",
+   "mailnesia.com",
+   "mintemail.com",
+   "sharklasers.com",
+   "temp-mail.org",
+   "throwawaymail.com",
+   "tmpmail.org",
+   "yopmail.com"
+  ],
+  "recall_listed": {
+   "mean": 1.0,
+   "lo": 1.0,
+   "hi": 1.0
+  },
+  "recall_unlisted": {
+   "mean": 0.655465,
+   "lo": 0.462515,
+   "hi": 0.809555
+  },
+  "rows_per_seed_listed": 23.35,
+  "rows_per_seed_unlisted": 22.5
+ }
+}

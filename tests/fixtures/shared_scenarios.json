@@ -1,0 +1,164 @@
+[
+ {
+  "name": "honest user",
+  "steps": [
+   [
+    "ana.r@outlook.com",
+    "79.1.1.1",
+    "dv-a"
+   ]
+  ],
+  "expect_last": "allow"
+ },
+ {
+  "name": "gmail alias of an earlier signup",
+  "steps": [
+   [
+    "john@gmail.com",
+    "79.1.1.1",
+    "dv-j"
+   ],
+   [
+    "j.o.h.n+2@gmail.com",
+    "84.2.2.2",
+    "dv-k"
+   ]
+  ],
+  "expect_last": "flagged"
+ },
+ {
+  "name": "yahoo hyphen alias",
+  "steps": [
+   [
+    "farmer-1@yahoo.com",
+    "79.1.1.1",
+    "dv-1"
+   ],
+   [
+    "farmer-9@yahoo.com",
+    "84.2.2.2",
+    "dv-2"
+   ]
+  ],
+  "expect_last": "flagged"
+ },
+ {
+  "name": "disposable inbox",
+  "steps": [
+   [
+    "x81@yopmail.com",
+    "79.1.1.1",
+    "dv-x"
+   ]
+  ],
+  "expect_last": "flagged"
+ },
+ {
+  "name": "same card, fresh everything",
+  "steps": [
+   [
+    "ann@outlook.com",
+    "79.1.1.1",
+    "dv-a",
+    {
+     "card": "fp1"
+    }
+   ],
+   [
+    "bob@proton.me",
+    "84.2.2.2",
+    "dv-b",
+    {
+     "card": "fp1"
+    }
+   ]
+  ],
+  "expect_last": "flagged"
+ },
+ {
+  "name": "owner after a squatter's alias",
+  "steps": [
+   [
+    "maya.cohen+promo@gmail.com",
+    "45.32.7.1",
+    "dv-s"
+   ],
+   [
+    "mayacohen@gmail.com",
+    "79.177.4.2",
+    "dv-m"
+   ]
+  ],
+  "expect_last": "flagged"
+ },
+ {
+  "name": "two people, one laptop, an hour apart",
+  "steps": [
+   [
+    "dana.levi@gmail.com",
+    "84.229.3.10",
+    "dv-home"
+   ],
+   [
+    "yossi.levi@outlook.com",
+    "84.229.3.11",
+    "dv-home"
+   ]
+  ],
+  "expect_last": "not block"
+ },
+ {
+  "name": "owner with a dot after a squatter's alias",
+  "steps": [
+   [
+    "tamar.cohen+promo@gmail.com",
+    "45.32.7.1",
+    "dv-s"
+   ],
+   [
+    "tamar.cohen@gmail.com",
+    "79.177.4.2",
+    "dv-t"
+   ]
+  ],
+  "expect_last": "flagged"
+ },
+ {
+  "name": "dot trick without tags",
+  "steps": [
+   [
+    "tamarcohen@gmail.com",
+    "79.1.1.1",
+    "dv-1"
+   ],
+   [
+    "tamar.cohen@gmail.com",
+    "84.2.2.2",
+    "dv-2"
+   ]
+  ],
+  "expect_last": "flagged"
+ },
+ {
+  "name": "phone-auth user without an email",
+  "steps": [
+   [
+    null,
+    "79.1.1.1",
+    "dv-p"
+   ]
+  ],
+  "expect_last": "allow"
+ },
+ {
+  "name": "whitespace-only email is missing, not invalid",
+  "steps": [
+   [
+    "  ",
+    "79.1.1.2",
+    "dv-q"
+   ]
+  ],
+  "expect_last": "allow"
+ }
+]
